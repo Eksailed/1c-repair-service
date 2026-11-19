@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>Источник</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>Заявки</name>
+<field xsi:type="DataSetFieldField"><dataPath>Заявка</dataPath><field>Заявка</field></field>
+<field xsi:type="DataSetFieldField"><dataPath>Клиент</dataPath><field>Клиент</field></field>
+<field xsi:type="DataSetFieldField"><dataPath>Устройство</dataPath><field>Устройство</field></field>
+<field xsi:type="DataSetFieldField"><dataPath>Мастер</dataPath><field>Мастер</field></field>
+<field xsi:type="DataSetFieldField"><dataPath>Срок</dataPath><field>Срок</field></field>
+<field xsi:type="DataSetFieldField"><dataPath>СостояниеСрока</dataPath><field>СостояниеСрока</field></field>
+		<dataSource>Источник</dataSource>
+		<query>ВЫБРАТЬ
+    Ремонт.Ссылка КАК Заявка,
+    Ремонт.Клиент КАК Клиент,
+    Ремонт.Устройство КАК Устройство,
+    Ремонт.Мастер КАК Мастер,
+    Ремонт.СрокРемонта КАК Срок,
+    ВЫБОР
+        КОГДА Ремонт.СрокРемонта = ДАТАВРЕМЯ(1, 1, 1) ТОГДА "Не задан"
+        КОГДА НАЧАЛОПЕРИОДА(Ремонт.СрокРемонта, ДЕНЬ) &lt; НАЧАЛОПЕРИОДА(&amp;ТекущийДень, ДЕНЬ) ТОГДА "Просрочен"
+        ИНАЧЕ "В срок"
+    КОНЕЦ КАК СостояниеСрока
+ИЗ
+    Документ.ЗаявкаНаРемонт КАК Ремонт
+ГДЕ
+    НЕ Ремонт.ПометкаУдаления
+    И Ремонт.Статус = ЗНАЧЕНИЕ(Перечисление.СтатусыЗаявок.ВРаботе)
+УПОРЯДОЧИТЬ ПО Срок, Заявка</query>
+	</dataSet>
+	<parameter>
+		<name>ТекущийДень</name>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>Date</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<expression>ТекущаяДата()</expression>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+		<use>Always</use>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Заявка</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Клиент</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Устройство</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Мастер</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>Срок</dcsset:field></dcsset:item><dcsset:item xsi:type="dcsset:SelectedItemField"><dcsset:field>СостояниеСрока</dcsset:field></dcsset:item></dcsset:selection>
+
+			<dcsset:filter>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">Мастер</dcsset:left>
+					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:viewMode>QuickAccess</dcsset:viewMode>
+					<dcsset:userSettingID>76b494e2-e5a6-43d5-8dc1-4f3985f39d42</dcsset:userSettingID>
+				</dcsset:item>
+			</dcsset:filter>
+			<dcsset:conditionalAppearance>
+				<dcsset:item>
+					<dcsset:selection>
+						<dcsset:item>
+							<dcsset:field>СостояниеСрока</dcsset:field>
+						</dcsset:item>
+					</dcsset:selection>
+					<dcsset:filter>
+						<dcsset:item xsi:type="dcsset:FilterItemComparison">
+							<dcsset:left xsi:type="dcscor:Field">СостояниеСрока</dcsset:left>
+							<dcsset:comparisonType>Equal</dcsset:comparisonType>
+							<dcsset:right xsi:type="xs:string">Просрочен</dcsset:right>
+						</dcsset:item>
+					</dcsset:filter>
+					<dcsset:appearance>
+						<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+							<dcscor:parameter>ЦветТекста</dcscor:parameter>
+							<dcscor:value xsi:type="v8ui:Color">web:Red</dcscor:value>
+						</dcscor:item>
+					</dcsset:appearance>
+				</dcsset:item>
+			</dcsset:conditionalAppearance>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

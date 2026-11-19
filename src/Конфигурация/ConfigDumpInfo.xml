@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ConfigDumpInfo xmlns="http://v8.1c.ru/8.3/xcf/dumpinfo" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" format="Hierarchical" version="2.20">
+	<ConfigVersions>
+		<Metadata name="AccumulationRegister.ОстаткиЗапчастей" id="b90df3ae-7b08-4d58-ac35-60754afc5a77" configVersion="0f1ba43a2352504b8f11d17c9b1ea93100000000">
+			<Metadata name="AccumulationRegister.ОстаткиЗапчастей.Resource.Количество" id="a53dc5ad-e07d-41ca-af33-c2bd06d94801"/>
+			<Metadata name="AccumulationRegister.ОстаткиЗапчастей.Dimension.Запчасть" id="eb18e9f5-78e0-4507-a16d-7daf67f3eba4"/>
+		</Metadata>
+		<Metadata name="Catalog.Запчасти" id="536447e2-59f6-4e51-96ad-7038f920ed3d" configVersion="63c6cb9228e32f409a6a162d674a7c7f00000000"/>
+		<Metadata name="Catalog.Клиенты" id="61848814-1037-47fe-b96d-47d9b355fc13" configVersion="95fb5222baf2844dabbaaa85b90da7d200000000"/>
+		<Metadata name="Catalog.Мастера" id="7043c104-4a55-4115-91dc-6690cb5fe9d9" configVersion="402cc1fd49a13b44b3fc974bbe2fb5bc00000000"/>
+		<Metadata name="CommonModule.УчетЗапчастей" id="5db25a31-da4e-4e21-bf0b-76abab4814c2" configVersion="6416f3565370cd42850f7fc25350275900000000"/>
+		<Metadata name="CommonModule.УчетЗапчастей.Module" id="5db25a31-da4e-4e21-bf0b-76abab4814c2.0" configVersion="5f91afbb8b8f2d48b12ae52700fef20a00000000"/>
+		<Metadata name="Configuration.ЗаявкиНаРемонт" id="e9b11860-d5bf-422c-bec7-655af7ae168a" configVersion="5fcccee0f4f2094295254b9f9ff4b28b00000000"/>
+		<Metadata name="Document.ЗаявкаНаРемонт" id="d5bee99a-1e00-4e76-a9c8-aa73c73b4343" configVersion="4a33ee5545e7a54796ba03dc49f2edef00000000">
+			<Metadata name="Document.ЗаявкаНаРемонт.Attribute.Статус" id="045a14b1-b648-485d-8ad4-849d395033ac"/>
+			<Metadata name="Document.ЗаявкаНаРемонт.Attribute.Клиент" id="0eb23bdf-6bba-45a7-a651-0479877e71a6"/>
+			<Metadata name="Document.ЗаявкаНаРемонт.TabularSection.Запчасти.Attribute.Количество" id="18b631b3-5cc1-42e2-b10a-d23b70fe42aa"/>
+			<Metadata name="Document.ЗаявкаНаРемонт.Attribute.Неисправность" id="1ace9b8d-ded8-4303-a8c9-e65a3223cf54"/>
+			<Metadata name="Document.ЗаявкаНаРемонт.Attribute.Мастер" id="1b92274d-70d2-4d94-8a28-56e66e9bd342"/>
+			<Metadata name="Document.ЗаявкаНаРемонт.Attribute.Устройство" id="3df9186f-dd56-40be-8da7-820df222b536"/>
+			<Metadata name="Document.ЗаявкаНаРемонт.TabularSection.Запчасти.Attribute.Запчасть" id="5f4e1374-681e-408a-a67c-8708e22a8a37"/>
+			<Metadata name="Document.ЗаявкаНаРемонт.TabularSection.Запчасти" id="671c72a0-cc1f-4586-8485-0958db0998c4"/>
+		</Metadata>
+		<Metadata name="Document.ЗаявкаНаРемонт.ObjectModule" id="d5bee99a-1e00-4e76-a9c8-aa73c73b4343.0" configVersion="646c310bd9b3854fa1214cb7c576f02200000000"/>
+		<Metadata name="Document.ПоступлениеЗапчастей" id="5266c259-f679-4c5a-8fd5-ba9908388430" configVersion="237180c0327f6f4cbbcb7a61d8d62e5e00000000">
+			<Metadata name="Document.ПоступлениеЗапчастей.TabularSection.Запчасти.Attribute.Количество" id="1caaa33c-4647-4d4a-bb4c-5dd3bae9f19b"/>
+			<Metadata name="Document.ПоступлениеЗапчастей.TabularSection.Запчасти" id="764fe09d-739b-44ee-ba20-84586cd69ad0"/>
+			<Metadata name="Document.ПоступлениеЗапчастей.TabularSection.Запчасти.Attribute.Запчасть" id="7e83246a-7db3-4ddc-b6fd-bfc3a9691a33"/>
+		</Metadata>
+		<Metadata name="Document.ПоступлениеЗапчастей.ObjectModule" id="5266c259-f679-4c5a-8fd5-ba9908388430.0" configVersion="519907bc5820654db84f11d6c1bd617e00000000"/>
+		<Metadata name="Enum.СтатусыЗаявок" id="b000a826-c1af-4a70-b77d-fc3bf2b77023" configVersion="22768a340d3799479945653b2487862f00000000">
+			<Metadata name="Enum.СтатусыЗаявок.EnumValue.Новая" id="5a6e24d7-efa0-4d17-b8ce-66bda879d525"/>
+			<Metadata name="Enum.СтатусыЗаявок.EnumValue.ВРаботе" id="ca4c65ef-6684-4ba2-b7c2-4c8349dcb76a"/>
+			<Metadata name="Enum.СтатусыЗаявок.EnumValue.Готова" id="d876f7a0-f744-452e-981b-f1d33d379656"/>
+		</Metadata>
+		<Metadata name="Language.Русский" id="23335d1e-6475-44f1-8016-e0dbf22e2288" configVersion="031588104fc9c5498c69277fe1a4ba5e00000000"/>
+		<Metadata name="Report.ЗапчастиНаСкладе" id="bdb5c8a2-b4e0-47d4-9041-861d07b88f00" configVersion="02a12fa79e47f84998a46ec075f5c5ed00000000"/>
+		<Metadata name="Report.ЗапчастиНаСкладе.Template.ОсновнаяСхемаКомпоновкиДанных" id="3f9044a8-6bff-4f99-9231-c885f812b604" configVersion="7ab7c0590fdf874cbb484699ba682df100000000"/>
+		<Metadata name="Report.ЗапчастиНаСкладе.Template.ОсновнаяСхемаКомпоновкиДанных.Template" id="3f9044a8-6bff-4f99-9231-c885f812b604.0" configVersion="ce4f622dca613348b535476193e199cf00000000"/>
+		<Metadata name="Report.ЗаявкиПоСтатусам" id="1bdee3bc-2527-4a7b-8ec7-b7fedcf63cf8" configVersion="dce8aec9a2863c4ba14975a5fd9bc80400000000"/>
+		<Metadata name="Report.ЗаявкиПоСтатусам.Template.ОсновнаяСхемаКомпоновкиДанных" id="5a2495f5-62ea-43e7-8fed-c140bcd8ebbb" configVersion="d50c441ea94b524a80c017f6cf7dc19a00000000"/>
+		<Metadata name="Report.ЗаявкиПоСтатусам.Template.ОсновнаяСхемаКомпоновкиДанных.Template" id="5a2495f5-62ea-43e7-8fed-c140bcd8ebbb.0" configVersion="984beb61d36b5b46ad0776a76e3b4a9700000000"/>
+		<Metadata name="Subsystem.Сервис" id="40097592-72f8-4f5a-b45e-3b448ec1c378" configVersion="68fae54f5f0a4845bb5f38ee44c7796500000000"/>
+	</ConfigVersions>
+</ConfigDumpInfo>

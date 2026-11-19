@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>Поставки</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Заказ</dataPath>
+			<field>Заказ</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Поставщик</dataPath>
+			<field>Поставщик</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Ремонт</dataPath>
+			<field>Ремонт</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Запчасть</dataPath>
+			<field>Запчасть</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Заказано</dataPath>
+			<field>Заказано</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Получено</dataPath>
+			<field>Получено</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОсталосьПолучить</dataPath>
+			<field>ОсталосьПолучить</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+    Строки.Ссылка КАК Заказ,
+    Строки.Запчасть КАК Запчасть,
+    СУММА(Строки.Количество) КАК КоличествоЗаказа
+ПОМЕСТИТЬ ЗаказанныеПозиции
+ИЗ
+    Документ.ЗаказПоставщику.Запчасти КАК Строки
+ГДЕ
+    НЕ Строки.Ссылка.ПометкаУдаления
+СГРУППИРОВАТЬ ПО
+    Строки.Ссылка, Строки.Запчасть
+;
+ВЫБРАТЬ
+    Строки.Ссылка.ЗаказПоставщику КАК Заказ,
+    Строки.Запчасть КАК Запчасть,
+    СУММА(Строки.Количество) КАК КоличествоПоставки
+ПОМЕСТИТЬ ПолученныеПозиции
+ИЗ
+    Документ.ПоступлениеЗапчастей.Запчасти КАК Строки
+ГДЕ
+    Строки.Ссылка.Проведен
+    И Строки.Ссылка.ЗаказПоставщику &lt;&gt; ЗНАЧЕНИЕ(Документ.ЗаказПоставщику.ПустаяСсылка)
+СГРУППИРОВАТЬ ПО
+    Строки.Ссылка.ЗаказПоставщику, Строки.Запчасть
+;
+ВЫБРАТЬ
+    Позиции.Заказ КАК Заказ,
+    Позиции.Заказ.Поставщик КАК Поставщик,
+    Позиции.Заказ.ЗаявкаНаРемонт КАК Ремонт,
+    Позиции.Запчасть КАК Запчасть,
+    Позиции.КоличествоЗаказа КАК Заказано,
+    ЕСТЬNULL(Поставки.КоличествоПоставки, 0) КАК Получено,
+    Позиции.КоличествоЗаказа - ЕСТЬNULL(Поставки.КоличествоПоставки, 0) КАК ОсталосьПолучить
+ИЗ
+    ЗаказанныеПозиции КАК Позиции
+    ЛЕВОЕ СОЕДИНЕНИЕ ПолученныеПозиции КАК Поставки
+    ПО Позиции.Заказ = Поставки.Заказ И Позиции.Запчасть = Поставки.Запчасть
+ГДЕ
+    Позиции.КоличествоЗаказа &gt; ЕСТЬNULL(Поставки.КоличествоПоставки, 0)</query>
+	</dataSet>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Основной</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Заказ</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Поставщик</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Ремонт</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Запчасть</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Заказано</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Получено</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>ОсталосьПолучить</dcsset:field>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:filter>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">Поставщик</dcsset:left>
+					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:viewMode>QuickAccess</dcsset:viewMode>
+					<dcsset:userSettingID>12bcf33d-8034-415d-948c-a2e75e551d87</dcsset:userSettingID>
+				</dcsset:item>
+			</dcsset:filter>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>
